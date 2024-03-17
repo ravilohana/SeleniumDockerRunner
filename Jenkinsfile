@@ -10,20 +10,26 @@ pipeline{
 
     stages{
 
-        stage('Run Tests'){
+        stage('Start Grid'){
             steps{
-                bat 'docker-compose up'
+                bat 'docker-compose -f grid.yaml up -d'
             }
         }
 
-        stage('Selenium down'){
+        stage('Run Selenium Test'){
             steps{
-                bat 'docker-compose down'
+                bat 'docker-compose -f test-suites.yaml up'
             }
         }
 
 
 
+    }
+    post{
+        always{
+            bat 'docker-compose -f grid.yaml down'
+            bat 'docker-compose -f test-suites.yaml down'
+        }
     }
 
 
