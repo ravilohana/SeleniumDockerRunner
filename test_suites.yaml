@@ -7,7 +7,7 @@ services:
   vendor-portal:
     image: ravilohana/selenium-docker:02
     environment:
-      - BROWSER
+      - BROWSER=${BROWSER}
       - HUB_HOST=selenium-hub
       - THREAD_COUNT=4
       - TEST_SUITE=vendor-portal.xml
@@ -18,7 +18,7 @@ services:
   flight-reservation:
       image: ravilohana/selenium-docker:02
       environment:
-        - BROWSER
+        - BROWSER=${BROWSER}
         - HUB_HOST=selenium-hub
         - THREAD_COUNT=4
         - TEST_SUITE=flight-reservation.xml
