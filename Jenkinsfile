@@ -3,7 +3,7 @@ pipeline{
     agent any
 
     parameters {
-        choice choices: ['CHROME', 'FIREFOX', 'MSEDGE'], description: 'Select the browser.', name: 'BROWSER'
+        choice choices: ['chrome', 'firefox', 'edge'], description: 'Select the browser.', name: 'BROWSER'
     }
 
     environment {
@@ -16,7 +16,7 @@ pipeline{
 
         stage('Start Grid'){
             steps{
-                bat 'docker-compose -f grid.yaml up --scale ${params.BROWSER} -d'
+                bat 'docker-compose -f grid.yaml up --scale ${params.BROWSER}=2 -d'
             }
         }
 
