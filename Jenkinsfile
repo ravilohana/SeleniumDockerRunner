@@ -2,6 +2,10 @@ pipeline{
 
     agent any
 
+    parameters {
+        choice choices: ['CHROME', 'FIREFOX', 'MSEDGE'], description: 'Select the browser.', name: 'BROWSER'
+    }
+
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
@@ -12,7 +16,7 @@ pipeline{
 
         stage('Start Grid'){
             steps{
-                bat 'docker-compose -f grid.yaml up -d'
+                bat 'docker-compose -f grid.yaml up --scale ${params.BROWSER} -d'
             }
         }
 
