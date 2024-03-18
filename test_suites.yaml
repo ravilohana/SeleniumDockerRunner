@@ -5,7 +5,7 @@ version: "3"
 services:
 
   vendor-portal:
-    image: ravilohana/selenium-docker
+    image: ravilohana/selenium-docker:02
     environment:
       - BROWSER
       - HUB_HOST=selenium-hub
@@ -16,7 +16,7 @@ services:
 
 
   flight-reservation:
-      image: ravilohana/selenium-docker
+      image: ravilohana/selenium-docker:02
       environment:
         - BROWSER
         - HUB_HOST=selenium-hub
